@@ -31,7 +31,7 @@ const Hero = () => {
         ref={bgRef}
         className="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-300 ease-out"
         style={{ 
-          backgroundImage: 'url("https://images.unsplash.com/photo-1513036191774-b2badb8fcb76?q=80&w=2070&auto=format&fit=crop")',
+          backgroundImage: 'url("https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=2064&auto=format&fit=crop")',
           backgroundSize: 'cover',
           transform: 'scale(1.1)'
         }}
