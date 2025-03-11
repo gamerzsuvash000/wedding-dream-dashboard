@@ -2,8 +2,27 @@
 import React from 'react';
 import { Facebook, Instagram, Twitter, Mail, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useToast } from '@/components/ui/use-toast';
 
 const Footer = () => {
+  const { toast } = useToast();
+
+  const handleSocialClick = (platform: string) => {
+    toast({
+      title: `${platform} Clicked`,
+      description: `You've clicked on our ${platform} profile. This link will be available soon.`,
+      duration: 3000,
+    });
+  };
+
+  const handleContactClick = (method: string, value: string) => {
+    toast({
+      title: `Contact via ${method}`,
+      description: `You've selected to contact us via ${method}: ${value}`,
+      duration: 3000,
+    });
+  };
+
   return (
     <footer className="bg-gradient-to-r from-wedding-pink/30 to-wedding-champagne/30 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 py-12">
@@ -15,15 +34,24 @@ const Footer = () => {
               Elevating your wedding management experience with elegant solutions
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-500 hover:text-wedding-gold transition-colors">
+              <button 
+                className="text-gray-500 hover:text-wedding-gold transition-colors"
+                onClick={() => handleSocialClick('Facebook')}
+              >
                 <Facebook size={20} />
-              </a>
-              <a href="#" className="text-gray-500 hover:text-wedding-gold transition-colors">
+              </button>
+              <button 
+                className="text-gray-500 hover:text-wedding-gold transition-colors"
+                onClick={() => handleSocialClick('Instagram')}
+              >
                 <Instagram size={20} />
-              </a>
-              <a href="#" className="text-gray-500 hover:text-wedding-gold transition-colors">
+              </button>
+              <button 
+                className="text-gray-500 hover:text-wedding-gold transition-colors"
+                onClick={() => handleSocialClick('Twitter')}
+              >
                 <Twitter size={20} />
-              </a>
+              </button>
             </div>
           </div>
           
@@ -50,9 +78,16 @@ const Footer = () => {
             <ul className="space-y-2">
               {['Video Editing', 'Photo Editing', 'Album Design', 'Client Management', 'Financial Tracking'].map((item) => (
                 <li key={item}>
-                  <a href="#" className="text-sm text-gray-600 hover:text-wedding-gold transition-colors">
+                  <button 
+                    className="text-sm text-gray-600 hover:text-wedding-gold transition-colors text-left"
+                    onClick={() => toast({
+                      title: `${item} Service`,
+                      description: `You've selected our ${item} service. More details will be available soon.`,
+                      duration: 3000,
+                    })}
+                  >
                     {item}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -64,15 +99,21 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-center">
                 <Mail size={16} className="text-wedding-gold mr-2" />
-                <a href="mailto:contact@weddingdreams.com" className="text-sm text-gray-600 hover:text-wedding-gold transition-colors">
+                <button 
+                  className="text-sm text-gray-600 hover:text-wedding-gold transition-colors text-left"
+                  onClick={() => handleContactClick('Email', 'contact@weddingdreams.com')}
+                >
                   contact@weddingdreams.com
-                </a>
+                </button>
               </li>
               <li className="flex items-center">
                 <Phone size={16} className="text-wedding-gold mr-2" />
-                <a href="tel:+11234567890" className="text-sm text-gray-600 hover:text-wedding-gold transition-colors">
+                <button 
+                  className="text-sm text-gray-600 hover:text-wedding-gold transition-colors text-left"
+                  onClick={() => handleContactClick('Phone', '+1 (123) 456-7890')}
+                >
                   +1 (123) 456-7890
-                </a>
+                </button>
               </li>
             </ul>
           </div>
